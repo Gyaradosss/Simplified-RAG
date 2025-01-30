@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GPT</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+<body>
+    <h1>Enter Text Below:</h1>
+    <div id="chat-container"></div>
+
+    <form method="POST" id="chat-form">
+        <input type="text" id="user_input" name="user_input" placeholder="Message GPT" required>
+        <button type="submit">submit</button>
+    </form>
+
+    <script>
+        let chatHistory = [];
+
+        document.getElementById("chat-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const userInput = document.getElementById("user_input").value;
+            const userMessageElement = document.createElement("div");
+            userMessageElement.classList.add("message", "user-message");
+            userMessageElement.textContent = userInput;
+            document.getElementById("chat-container").appendChild(userMessageElement);
+            document.getElementById("user_input").value = "";
+            chatHistory.push({ role: "user", content: userInput });
+            if (chatHistory.length > 10) {
+                chatHistory.shift(); 
+            }
+            fetch('/', {
+                method: 'POST',
+                body: JSON.stringify({ history:chatHistory, user_input: userInput }),
+                headers: { 'Content-Type': 'application/json' },
+            })
+            .then(response => response.json())
+            .then(data => {
+                const assistantMessage = data.openai_response;
+                chatHistory.push({ role: "assistant", content: assistantMessage });
+                const assistantMessageElement = document.createElement("div");
+                assistantMessageElement.classList.add("message", "assistant-message");
+                assistantMessageElement.textContent = assistantMessage;
+                document.getElementById("chat-container").appendChild(assistantMessageElement);
+            });
+
+        });
+    </script>
+
+</body>
+</html>
+
