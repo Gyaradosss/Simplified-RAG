@@ -6,7 +6,7 @@ import os
 import openai
 from langchain_openai import OpenAIEmbeddings
 
-openai.api_key = "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"
+openai.api_key = ""
 embd = OpenAIEmbeddings(openai_api_key=openai.api_key)
 file_path = ("/home/ec2-user/myweb/doc.pdf")
 loader = PyPDFLoader(file_path)
