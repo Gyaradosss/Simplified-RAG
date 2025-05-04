@@ -11,7 +11,7 @@ Python (for RAG implementation)
 
 LangChain (for retrieval and generation)
 
-Vector Databases (e.g., FAISS, Pinecone, or OpenSearch)
+Vector Databases
 
 Flask / FastAPI (for backend API)
 
