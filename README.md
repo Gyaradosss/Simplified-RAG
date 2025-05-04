@@ -7,13 +7,11 @@ This project provides a simplified implementation of Retrieval-Augmented Generat
 
 ## Technologies Used
 
-Python (for RAG implementation)
-
 LangChain (for retrieval and generation)
 
 Vector Databases (Chroma)
 
-Flask / FastAPI (for backend API)
+Flask (for backend API)
 
 React.js / Next.js (for frontend development)
 
