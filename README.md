@@ -11,7 +11,7 @@ Python (for RAG implementation)
 
 LangChain (for retrieval and generation)
 
-Vector Databases
+Vector Databases (Chroma)
 
 Flask / FastAPI (for backend API)
 
